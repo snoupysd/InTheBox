@@ -8,4 +8,4 @@
 - Axios: Requests (to local our backend)
 - Mui: Styling, styled components
 
-Author: Thomas Marwitz
+Author: Thomas Marwitz, Lennart Großkreutz
