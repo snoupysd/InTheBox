@@ -7,6 +7,6 @@ export default configureStore({
     reducer: {
         packaging: packagingReducer,
         api: apiReducer,
-        orderApiReducer,
+        orderApi: orderApiReducer
     }
 })

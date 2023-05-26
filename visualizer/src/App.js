@@ -16,9 +16,13 @@ function App() {
                     Start Scanning
                 </Button>
                 <br />
+                <Button variant="contained" onClick={() => navigate("/order-history")}>
+                    Analyse Order History
+                </Button>
+                <br />
                 <Button variant="contained" onClick={() => navigate("/examples")}>
                     Examples
-                </Button>
+                </Button>                
             </div>
         </>
     )

@@ -72,7 +72,7 @@ const orderApiSlice = createSlice({
     initialState,
     reducers: {
         // added reducer (first one)
-        setMaxSizes(state, action) {
+        setRequestDataMaxSizes(state, action) {
             state.requestData.maxSizes = action.payload;
         },
         setRequestDataAlgorithm(state, action) {
@@ -134,7 +134,7 @@ const orderApiSlice = createSlice({
 export default orderApiSlice.reducer;
 
 export const {
-    setMaxSizes,
+    setRequestDataMaxSizes,
     setRequestDataAlgorithm,
     setRequestDataBinLimit,
     setRequestDataBins,
@@ -149,7 +149,7 @@ export const {
 } = orderApiSlice.actions;
 
 // added selector (first one)
-export const selectMaxSizes = state => state.orderApi.requestData.maxSizes;
+export const selectRequestDataMaxSizes = state => state.orderApi.requestData.maxSizes;
 export const selectRequestDataAlgorithm = state => state.orderApi.requestData.algorithm;
 export const selectRequestDataBoxes = state => state.orderApi.requestData.items;
 export const selectResponse = state => state.orderApi.response;

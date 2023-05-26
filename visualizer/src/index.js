@@ -10,6 +10,7 @@ import { PackingReqLoading } from './routes/PackingReqLoading';
 import  BoxReadingLoading from './routes/BoxReadingLoading';
 import { SharedData } from './routes/SharedData';
 import { Examples } from './routes/Examples';
+import { OrderHistory } from './routes/OrderHistory';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -29,6 +30,8 @@ root.render(
                 <Route path="shared" element={<SharedData />} />
                 
                 <Route path="examples" element={<Examples />} />
+
+                <Route path="/order-history" element={<OrderHistory />} />
             </Routes>
             </Provider>
         </React.StrictMode>
