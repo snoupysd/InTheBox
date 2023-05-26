@@ -7,7 +7,7 @@ function App() {
 
     return (<>
 
-            <Typography variant="h1" sx={{fontWeight: 700, textAlign: "center", margin: "3 rem"}}>Better Boxing</Typography>
+            <Typography variant="h1" sx={{fontWeight: 700, textAlign: "center", margin: "3 rem"}}>In The Box</Typography>
             
             <SceneSpinningPackage height={500}/>
             
