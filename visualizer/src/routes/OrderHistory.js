@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetBoxes, selectRequestDataAlgorithm, setRequestDataAlgorithm, selectRequestDataMaxSizes, setRequestDataMaxSizes } from "../store/orderApiSlice/orderApiSlice";
-import { DynamicFormReduxBins } from "../view/DynamicForm/DynamicFormReduxBins";
+import { DynamicFormReduxOrderApi } from "../view/DynamicForm/DynamicFormReduxOrderApi";
 
 export function OrderHistory() {
     const algorithm = useSelector(selectRequestDataAlgorithm);
@@ -47,6 +47,6 @@ export function OrderHistory() {
             <Input value={maxSizes} onChange={(event) => dispatch(setRequestDataMaxSizes(event.target.value))} />
         </>
 
-        <DynamicFormReduxBins title={"Specify Bins"} onSubmit={onSubmit} />
+        <DynamicFormReduxOrderApi title={"Specify Bins"} onSubmit={onSubmit} />
     </>);
 }
