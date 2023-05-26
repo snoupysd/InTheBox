@@ -1,6 +1,5 @@
 import { FormControl, InputLabel, Select, MenuItem, Input, Typography } from "@mui/material";
 import React from "react";
-import { DynamicForm } from "../view/DynamicForm/DynamicForm";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetBoxes, selectRequestDataAlgorithm, selectRequestDataBinLimit, selectRequestDataBins, setRequestDataAlgorithm, setRequestDataBinLimit, setRequestDataBins } from "../store/apiSlice/apiSlice";
