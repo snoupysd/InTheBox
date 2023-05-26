@@ -40,9 +40,9 @@ const initialState = {
     },
 }
 
-const fetchDataPending = createAction("orderApi/fetchBinData/pending");
-const fetchDataSuccess = createAction("orderApi/fetchBinData/success");
-const fetchDataRejected = createAction("orderApi/fetchBinData/rejected");
+const fetchDataPending = createAction("orderApi/fetchData/pending");
+const fetchDataSuccess = createAction("orderApi/fetchData/success");
+const fetchDataRejected = createAction("orderApi/fetchData/rejected");
 
 export const fetchData = () => {
 
@@ -50,6 +50,7 @@ export const fetchData = () => {
         const requestData = getState().api.requestData;
         
         dispatch(fetchDataPending());
+        // TODO not necessary, remove
         dispatch(setCurrentBin({currentBin: 0}));
 
         // TODO not postBinPacking, but something else (postOrderAnalysis)
@@ -136,14 +137,9 @@ export default orderApiSlice.reducer;
 export const {
     setRequestDataMaxSizes,
     setRequestDataAlgorithm,
-    setRequestDataBinLimit,
-    setRequestDataBins,
     setRequestDataBoxes,
     addRequestDataBox,
     setRequestDataBoxAttr,
-    setRequestDataBinAttr,
-    addEmptyRequestDataBin,
-    deleteLastRequestBin,
     deleteLastRequestBox,
     resetBoxes
 } = orderApiSlice.actions;
