@@ -1,8 +1,5 @@
 package org.boxclub.api;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.boxclub.core.datatypes.*;
 import org.boxclub.core.packing.BruteforceSolver;
 import org.boxclub.core.packing.LargestAreaFitFirstSolver;
@@ -34,16 +31,18 @@ public class PackingController {
     @PostMapping("/order-analysis")
     public OrderAnalysisResponse analyseOrders(@RequestBody OrderAnalysisRequest request) {
         // TODO code here (currently stub)
-        Bin bin = new Bin("mybin", 1, 1, 1, 1, 1, -1);
-        // TODO list or array?
-        List<BinRecommandation> binRecommandations = new ArrayList<>();
-        binRecommandations.add(null);
+        Bin testbin = new Bin("mybin", 1, 1, 1, 1, 1, -1);
+        
+        BinRecommandation[] binRecommandations = new BinRecommandation[request.maxSizes() + 1];
+        binRecommandations[0] = null;
         for (int i = 1; i < request.maxSizes() + 1; i++) {
-            List<Bin> binList = new ArrayList<>();
+            Bin[] binArray = new Bin[i];
             for (int j = 0; j < i; j++) {
-                binList.add(bin);
+                // i times the same bin for illustration
+                binArray[j] = testbin;
             }
-            binRecommandations.add(new BinRecommandation(i, binList, 0));
+
+            binRecommandations[i] = new BinRecommandation(i, binArray, 0);
         }
         return new OrderAnalysisResponse(binRecommandations);
     }
