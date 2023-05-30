@@ -1,7 +1,6 @@
 import { createSlice, createAction } from "@reduxjs/toolkit";
-import { getScannedBox, postBinPacking } from "../../client/client";
+import { postOrderAnalysis } from "../../client/client";
 import { dimensionEqual } from "../../helper/boxHelper";
-import { setCurrentBin, setResponseData } from "../packagingSlice/packagingSlice";
 
 const findById = (arr, id) => {
     return arr.filter(el => el.id === id)[0];
@@ -47,19 +46,15 @@ const fetchDataRejected = createAction("orderApi/fetchData/rejected");
 export const fetchData = () => {
 
     return (dispatch, getState) => {
-        const requestData = getState().api.requestData;
+        // get request data for THIS api
+        const requestData = getState().orderApi.requestData;
         
         dispatch(fetchDataPending());
-        // TODO not necessary, remove
-        dispatch(setCurrentBin({currentBin: 0}));
 
-        // TODO not postBinPacking, but something else (postOrderAnalysis)
-        // axios (?)
-        return postBinPacking(requestData).then(
+
+        return postOrderAnalysis(requestData).then(
             response => {
-                // TODO do something different here as well. Do not communicate with packaging slice
-                // dispatch(fetchDataSuccess({data: response.data}));
-                // dispatch(setResponseData({data: response.data}));
+                dispatch(fetchDataSuccess({data: response.data}));
             },
             error => dispatch(fetchDataRejected({error: error.message})),
         );
@@ -103,8 +98,7 @@ const orderApiSlice = createSlice({
             state.requestData.items.pop();
         },
         setRequestDataBoxAttr(state, action) {
-            // TODO set orderId as well. What does payload look like?
-            const {orderId, id, key, val} = action.payload;
+            const {id, key, val} = action.payload;
             const item = findById(state.requestData.items, id);
             const parse = parseInt(val)
             item[key] = isNaN(parse) ? 0 : parse;

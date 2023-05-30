@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+// the local host port we are communicating with (the one of the visualisation)
 @CrossOrigin(origins = "http://localhost:3000")
 public class PackingController {
     private PackingSolver solver = new LargestAreaFitFirstSolver();

@@ -2,12 +2,17 @@ import { FormControl, InputLabel, Select, MenuItem, Input, Typography } from "@m
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { resetBoxes, selectRequestDataAlgorithm, setRequestDataAlgorithm, selectRequestDataMaxSizes, setRequestDataMaxSizes } from "../store/orderApiSlice/orderApiSlice";
+import { fetchData, resetBoxes, selectRequestDataAlgorithm, setRequestDataAlgorithm, selectRequestDataMaxSizes, setRequestDataMaxSizes, selectRequestDataBoxes } from "../store/orderApiSlice/orderApiSlice";
 import { DynamicFormReduxOrderApi } from "../view/DynamicForm/DynamicFormReduxOrderApi";
+
+const dimValid = (dim) => {
+    return (dim.x && dim.y && dim.z);
+}
 
 export function OrderHistory() {
     const algorithm = useSelector(selectRequestDataAlgorithm);
     const maxSizes = useSelector(selectRequestDataMaxSizes);
+    const items = useSelector(selectRequestDataBoxes)
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -22,9 +27,12 @@ export function OrderHistory() {
         }
         dispatch(setRequestDataMaxSizes(numeralMaxSizes));
 
-        //dispatch(resetBoxes());
-        // TODO navigate elsewhere
-        // navigate("/boxes-loading");
+        if (items.filter(item => !dimValid(item)).length > 0) {
+            alert("Please fill in the missing gaps")
+            return
+        }
+        dispatch(fetchData());
+        navigate("/orderAnalysis-loading");
     }
 
     return (<>

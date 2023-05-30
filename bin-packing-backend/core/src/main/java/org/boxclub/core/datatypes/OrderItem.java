@@ -1,5 +1,4 @@
 package org.boxclub.core.datatypes;
 
-public record OrderItem(Item item, int orderId) {
-    
+public record OrderItem(String orderId, String id, int x, int y, int z, int weight, int count) {
 }

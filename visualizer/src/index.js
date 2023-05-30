@@ -32,6 +32,7 @@ root.render(
                 <Route path="examples" element={<Examples />} />
 
                 <Route path="/order-history" element={<OrderHistory />} />
+                <Route path="orderAnalysis-loading" element={<h1>Comming soon</h1>} />
             </Routes>
             </Provider>
         </React.StrictMode>
