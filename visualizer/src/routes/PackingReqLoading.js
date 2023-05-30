@@ -1,8 +1,8 @@
 import { CircularProgress, Typography } from "@mui/material";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
-import { fetchBinData, selectResponse } from "../store/apiSlice/apiSlice";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectResponse } from "../store/apiSlice/apiSlice";
 import { IconButton, TextField, Button } from '@mui/material';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -10,14 +10,8 @@ const websiteURL = "http://localhost:3000";
 
 export function PackingReqLoading(props) {
     const response = useSelector(selectResponse);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    const testReq = () => {
-        dispatch(fetchBinData())
-    }
-
-
 
     let content = null;
     if (response.loading) {
