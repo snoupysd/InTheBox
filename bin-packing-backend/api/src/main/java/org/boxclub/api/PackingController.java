@@ -1,7 +1,9 @@
 package org.boxclub.api;
 
-import org.boxclub.core.datatypes.PackingRequest;
-import org.boxclub.core.datatypes.PackingResponse;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.boxclub.core.datatypes.*;
 import org.boxclub.core.packing.BruteforceSolver;
 import org.boxclub.core.packing.LargestAreaFitFirstSolver;
 import org.boxclub.core.packing.PackingSolver;
@@ -26,5 +28,22 @@ public class PackingController {
         }
         if (USE_SORTING) solver = new SortingPackingDecorator(solver, new DefaultPlacementComparator());
         return solver.pack(request);
+    }
+
+    @PostMapping("/order-analysis")
+    public OrderAnalysisResponse analyseOrders(@RequestBody OrderAnalysisRequest request) {
+        // TODO code here (currently stub)
+        Bin bin = new Bin("mybin", 1, 1, 1, 1, 1, -1);
+        // TODO list or array?
+        List<BinRecommandation> binRecommandations = new ArrayList<>();
+        binRecommandations.add(null);
+        for (int i = 1; i < request.maxSizes() + 1; i++) {
+            List<Bin> binList = new ArrayList<>();
+            for (int j = 0; j < i; j++) {
+                binList.add(bin);
+            }
+            binRecommandations.add(new BinRecommandation(i, binList, 0));
+        }
+        return new OrderAnalysisResponse(binRecommandations);
     }
 }
