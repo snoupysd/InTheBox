@@ -11,6 +11,7 @@ import  BoxReadingLoading from './routes/BoxReadingLoading';
 import { SharedData } from './routes/SharedData';
 import { Examples } from './routes/Examples';
 import { OrderHistory } from './routes/OrderHistory';
+import { OrderAnalysisLoading } from './routes/OrderAnalysisLoading';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -32,7 +33,7 @@ root.render(
                 <Route path="examples" element={<Examples />} />
 
                 <Route path="/order-history" element={<OrderHistory />} />
-                <Route path="orderAnalysis-loading" element={<h1>Comming soon</h1>} />
+                <Route path="orderAnalysis-loading" element={<OrderAnalysisLoading />} />
             </Routes>
             </Provider>
         </React.StrictMode>
