@@ -44,6 +44,6 @@ public class PackingController {
 
             binRecommandations[i] = new BinRecommandation(i, binArray, 0);
         }
-        return new OrderAnalysisResponse(binRecommandations);
+        return new OrderAnalysisResponse(binRecommandations, true);
     }
 }
