@@ -2,18 +2,21 @@ import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import { selectResponse } from "../store/orderApiSlice/orderApiSlice";
 
-import { Typography, Card, CardActions, CardContent, CardMedia, Grid, Container, Button } from "@mui/material"
+import { Typography, Grid, Container, Button } from "@mui/material"
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react'
+import BinCard from "../view/OrderAnalysisResult/BinCard";
 
 
 export function OrderAnalysisResult() {
     const response = useSelector(selectResponse);
     const data = response.data
     const navigate = useNavigate();
+
+    // number of different sizes we're currently showing our recommandation for
     const [numberBoxes, setNumberBoxes] = useState(1);
 
-
+    // case failure
     if (!data || !data.binRecommandations || data.binRecommandations.length === 0) {
         return <Box sx={{
             alignItems: 'center',
@@ -37,15 +40,12 @@ export function OrderAnalysisResult() {
                 backgroundColor: 'background.paper',
             }}>
             <Container maxWidth="md" >
-                <Typography sx={{ fontSize: "2rem", fontWeight: "700" }} align="center" color="textPrimary" gutterBottom>
+                <Typography sx={{ fontSize: "2.3rem", fontWeight: "700" }} align="center" color="textPrimary" gutterBottom>
                     Order Analysis Result
-                </Typography>
-                <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                    text here?
                 </Typography>
                 <Box
                     sx={{
-                        marginTop: '40px',
+                        margin: '20px',
                     }}>
                     <Grid container spacing={3} justifyContent="center">
                         <Grid item>
@@ -63,33 +63,17 @@ export function OrderAnalysisResult() {
                         </Grid>
                     </Grid>
                 </Box>
+                <Typography variant="h5" align="center" color="textSecondary" paragraph>
+                    The recommandation for this specific number of different sizes results in 
+                    an average use of volume of {currentRecommandation.volumeUsed * 100}%
+                </Typography>
             </Container>
         </Box>
         <Container sx={{ padding: '20px 0' }} maxWidth="md">
             <Grid container spacing={4}>
                 {currentRecommandation.bins.map((bin, index) => (
                     <Grid item key={index} xs={12} sm={6} md={4}>
-                        <Card
-                            xs={{
-                                height: '100%',
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}>
-                            <CardMedia
-                                sx={{ paddingTop: '56.25%' }}
-                                image="https://source.unsplash.com/random"
-                                title="box"
-                            />
-                            <CardContent sx={{ flexGrow: 1 }}>
-
-                                <Typography>
-                                    x: {bin.x} <br /> y: {bin.y} <br /> z: {bin.z}
-                                </Typography>
-                                <CardActions>
-                                    <Button size="small" color="primary">See online</Button>
-                                </CardActions>
-                            </CardContent>
-                        </Card>
+                        <BinCard bin={bin}/>
                     </Grid>
                 ))}
             </Grid>
